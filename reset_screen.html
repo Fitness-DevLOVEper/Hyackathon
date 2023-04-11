@@ -1,0 +1,21 @@
+<head></head>
+<body>
+    <div class="form reset">
+        <span class="title">Login</span>
+        <form action="http://127.0.0.1:5724/Login/reset2/" method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                <input type="text" placeholder="Enter your new password" required name="password">
+                <i class="uil uil-envelope icon"></i>
+            </div>
+            </div>
+
+            <div class="input-field button">
+                
+                <input type="submit" value="Reset password" >
+            </div>
+        </form>
+
+        
+    </div>
+</body>

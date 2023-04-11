@@ -1,0 +1,21 @@
+<head></head>
+<body>
+    <div class="form login">
+        <span class="title">Login</span>
+        <form action="http://127.0.0.1:5724/Login/reset/" method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                <input type="text" placeholder="OTP" required name="OTP">
+                <i class="uil uil-envelope icon"></i>
+            </div>
+            </div>
+
+            <div class="input-field button">
+                
+                <input type="submit" value="VERIFY OTP" >
+            </div>
+        </form>
+
+        
+    </div>
+</body>
