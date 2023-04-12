@@ -46,10 +46,14 @@ def verify(request):
     password=request.POST["password"]
     key,call=verify_user(username,password)
     if(key==1):
-        bp.text_to_speech().play_text(call)
+        bp.text_to_speech().play_text("welcome "+call)
         return render(request,'home_screen1.html',{'call_name':call})
     else:
         return HttpResponseRedirect('http://127.0.0.1:5724/Login/')
+    
+def testest(request):
+     return render(request,'reset_screen.html')
+     
 
 
 def reset_password(request):
@@ -60,6 +64,32 @@ def reset_password(request):
                obj.connection.commit()
                obj.connection.close()
                return HttpResponseRedirect('http://127.0.0.1:5724/Login/')
+
+
+def check_user(request):
+        sample.username=request.POST['username']
+        obj=bp.connect_backend()
+        retrieved=obj.retrieve_data()
+        flag=0
+        for i in range(len(retrieved)):
+            if(sample.username==retrieved[i][0]):
+                flag=1
+        if(flag==1):
+            return HttpResponseRedirect('http://127.0.0.1:5724/Login/signup1/')
+        else:
+               obj=bp.connect_backend()
+               data={}
+               data['email']=sample.email
+               data['password']=sample.password
+               data['user_name']=sample.username
+               data['call_name']=sample.call_name
+               obj.insert_user_data(data)
+               return HttpResponseRedirect('http://127.0.0.1:5724/Login/')
+        
+def show(request):
+     return render(request,'home_screen_test.html')
+def show2(request):
+     return testest(request)
 
 
 def signup_screen1(request):
@@ -98,4 +128,5 @@ def verify_user(username,password):
                 return 1,call
             else:
                 return 0,None
-   
+
+  
